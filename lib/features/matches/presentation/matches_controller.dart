@@ -10,7 +10,6 @@ class MatchesController extends ChangeNotifier {
   MatchesController(this._repo);
   final MatchesRepository _repo;
 
-  // Caché por jornada: el plan gratuito solo permite 10 peticiones/minuto.
   final Map<int, List<MatchModel>> _cache = {};
 
   int currentMatchday = 1;
@@ -21,7 +20,6 @@ class MatchesController extends ChangeNotifier {
   List<MatchModel> get selectedMatches => _cache[selectedMatchday] ?? const [];
   List<MatchModel> get currentMatches => _cache[currentMatchday] ?? const [];
 
-  /// Próximo partido sin terminar de la jornada actual.
   MatchModel? get nextMatch {
     for (final m in currentMatches) {
       if (!m.isFinished) return m;
@@ -29,7 +27,6 @@ class MatchesController extends ChangeNotifier {
     return null;
   }
 
-  /// Partidos del día destacado (el del próximo partido, o el último día jugado).
   List<MatchModel> get featuredDayMatches {
     final base = nextMatch ?? (currentMatches.isEmpty ? null : currentMatches.last);
     if (base == null) return const [];
@@ -61,10 +58,17 @@ class MatchesController extends ChangeNotifier {
     notifyListeners();
     try {
       _cache[matchday] = await _repo.byMatchday(matchday);
-      status = ViewStatus.ready;
+      if (matchday == selectedMatchday) status = ViewStatus.ready;
     } on ApiException catch (e) {
-      errorMessage = e.message;
-      status = ViewStatus.error;
+      if (matchday == selectedMatchday) {
+        errorMessage = e.message;
+        status = ViewStatus.error;
+      }
+    } catch (_) {
+      if (matchday == selectedMatchday) {
+        errorMessage = 'No se pudieron leer los datos';
+        status = ViewStatus.error;
+      }
     }
     notifyListeners();
   }

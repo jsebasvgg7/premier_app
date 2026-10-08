@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Sistema visual: superficies suaves, una tarjeta oscura de contraste
-/// y un único acento (verde Premier) sobre fondos oscuros.
 class AppTheme {
   static const aubergine = Color(0xFF2A0A33);
   static const plum = Color(0xFF6B3FA0);
-  static const magenta = Color(0xFFE90052); // acción / marcador
-  static const neon = Color(0xFF00FF85); // acento sobre oscuro
+  static const magenta = Color(0xFFE90052);
+  static const neon = Color(0xFF00FF85);
   static const cream = Color(0xFFF3F0F6);
   static const card = Colors.white;
   static const border = Color(0xFFD9CCE3);
@@ -24,7 +22,6 @@ class AppTheme {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
-  static const matchGradient = darkGradient;
 
   static List<BoxShadow> get softShadow => [
         BoxShadow(color: aubergine.withValues(alpha: 0.10), blurRadius: 18, offset: const Offset(0, 8)),

@@ -30,6 +30,9 @@ class StandingsController extends ChangeNotifier {
     } on ApiException catch (e) {
       errorMessage = e.message;
       status = ViewStatus.error;
+    } catch (_) {
+      errorMessage = 'No se pudieron leer los datos';
+      status = ViewStatus.error;
     }
     notifyListeners();
   }

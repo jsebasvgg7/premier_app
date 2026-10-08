@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
 
-/// Tarjeta con esquina superior derecha recortada (pestaña) para una etiqueta.
 class NotchedCard extends StatelessWidget {
   const NotchedCard({
     super.key,

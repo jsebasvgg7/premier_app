@@ -3,7 +3,7 @@ import '../../../../core/models/team.dart';
 class MatchModel {
   final int id;
   final int matchday;
-  final DateTime date; // hora local del dispositivo
+  final DateTime date;
   final String status;
   final Team home;
   final Team away;

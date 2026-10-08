@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lucide_icons_lite/lucide_icons_lite.dart';
 
-/// Algunos escudos de la API son .svg y otros .png.
 class CrestImage extends StatelessWidget {
   const CrestImage(this.url, {super.key, this.size = 28});
   final String url;
