@@ -18,8 +18,12 @@ class CircleBadge extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppTheme.card,
-          border: Border.all(color: AppTheme.aubergine, width: 1.6),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.white, Color(0xFFEFEAF4)],
+          ),
+          boxShadow: AppTheme.softShadow,
         ),
         child: child,
       ),

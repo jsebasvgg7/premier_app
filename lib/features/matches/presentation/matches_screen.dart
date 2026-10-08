@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_lite/lucide_icons_lite.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -28,8 +27,6 @@ class MatchesScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 8, 16, FloatingNavBar.clearance),
       children: [
         Row(children: [
-          Icon(LucideIcons.calendar, size: 24, color: AppTheme.plum),
-          const SizedBox(width: 8),
           const Expanded(
             child: Text('Calendario', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
           ),

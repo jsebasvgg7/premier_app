@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    CircleBadge(
+                    const CircleBadge(
                       size: 88,
                       child: Icon(Icons.person, size: 56, color: AppTheme.aubergine),
                     ),

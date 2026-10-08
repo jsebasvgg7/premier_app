@@ -17,7 +17,8 @@ import '../../standings/presentation/standings_table.dart';
 import 'widgets/next_match_card.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, required this.onSeeTable, required this.onSeeMatches});
+  const HomeScreen(
+      {super.key, required this.onSeeTable, required this.onSeeMatches});
   final VoidCallback onSeeTable;
   final VoidCallback onSeeMatches;
 
@@ -37,16 +38,17 @@ class HomeScreen extends StatelessWidget {
         if (next != null) NextMatchCard(match: next),
         const SizedBox(height: 22),
         _SectionHeader(
-          icon: LucideIcons.calendar,
           title: 'Calendario',
           trailing: Row(mainAxisSize: MainAxisSize.min, children: [
             if (day.isNotEmpty)
-              Text(dayMonth(day.first.date), style: const TextStyle(fontWeight: FontWeight.w700)),
+              Text(dayMonth(day.first.date),
+                  style: const TextStyle(fontWeight: FontWeight.w700)),
             const SizedBox(width: 10),
             CircleBadge(
               size: 34,
               onTap: onSeeMatches,
-              child: Icon(LucideIcons.chevronRight, size: 18, color: AppTheme.aubergine),
+              child: const Icon(LucideIcons.chevronRight,
+                  size: 18, color: AppTheme.aubergine),
             ),
           ]),
         ),
@@ -68,16 +70,16 @@ class HomeScreen extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: onSeeMatches,
-                child: Text('Ver $hidden más'),
+                child: const Text('Ver más'),
               ),
             ),
         ] else if (matches.status == ViewStatus.loading)
           const _Loader()
         else if (matches.status == ViewStatus.error)
-          ErrorView(message: matches.errorMessage ?? 'Error', onRetry: matches.retry),
+          ErrorView(
+              message: matches.errorMessage ?? 'Error', onRetry: matches.retry),
         const SizedBox(height: 14),
         _SectionHeader(
-          icon: LucideIcons.trophy,
           title: 'Tabla de Posiciones',
           trailing: GestureDetector(
             onTap: onSeeTable,
@@ -87,8 +89,11 @@ class HomeScreen extends StatelessWidget {
         const SizedBox(height: 12),
         switch (standings.status) {
           ViewStatus.loading => const _Loader(),
-          ViewStatus.error => ErrorView(message: standings.errorMessage ?? 'Error', onRetry: standings.load),
-          ViewStatus.ready => StandingsTable(items: standings.topFive),
+          ViewStatus.error => ErrorView(
+              message: standings.errorMessage ?? 'Error',
+              onRetry: standings.load),
+          ViewStatus.ready => StandingsTable(
+              items: standings.topFive, tabLabel: standings.seasonLabel),
         },
       ],
     );
@@ -96,16 +101,13 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.icon, required this.title, required this.trailing});
-  final IconData icon;
+  const _SectionHeader({required this.title, required this.trailing});
   final String title;
   final Widget trailing;
 
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      Icon(icon, size: 24, color: AppTheme.plum),
-      const SizedBox(width: 8),
       Expanded(
         child: Text(
           title,
@@ -131,11 +133,13 @@ class _LeagueLink extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: AppTheme.border, width: 1.4),
       ),
-      child: Row(mainAxisSize: MainAxisSize.min, children: [
-        PremierLogo(color: AppTheme.aubergine, size: 16, fallback: LucideIcons.shield),
-        const SizedBox(width: 6),
-        const Text('Premier League', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
-        const SizedBox(width: 2),
+      child: const Row(mainAxisSize: MainAxisSize.min, children: [
+        PremierLogo(
+            color: AppTheme.aubergine, size: 16, fallback: LucideIcons.shield),
+        SizedBox(width: 6),
+        Text('Premier League',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+        SizedBox(width: 2),
         Icon(LucideIcons.chevronRight, size: 16, color: AppTheme.aubergine),
       ]),
     );
@@ -145,6 +149,7 @@ class _LeagueLink extends StatelessWidget {
 class _Loader extends StatelessWidget {
   const _Loader();
   @override
-  Widget build(BuildContext context) =>
-      const Padding(padding: EdgeInsets.all(24), child: Center(child: CircularProgressIndicator()));
+  Widget build(BuildContext context) => const Padding(
+      padding: EdgeInsets.all(24),
+      child: Center(child: CircularProgressIndicator()));
 }

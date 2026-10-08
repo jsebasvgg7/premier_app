@@ -94,16 +94,16 @@ class FloatingNavBar extends StatelessWidget {
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: AppTheme.magenta,
+                            color: AppTheme.aubergine,
                             boxShadow: [
                               BoxShadow(
-                                color: AppTheme.magenta.withValues(alpha: 0.35),
+                                color: AppTheme.aubergine.withValues(alpha: 0.4),
                                 blurRadius: 14,
                                 offset: const Offset(0, 6),
                               ),
                             ],
                           ),
-                          child: Center(child: _items[nearest].icon(Colors.white)),
+                          child: Center(child: _items[nearest].icon(AppTheme.neon)),
                         ),
                       ),
                     ),
@@ -152,16 +152,8 @@ class _BarPainter extends CustomPainter {
       ..addOval(Rect.fromCircle(center: Offset(cx, top - notchRise), radius: notchRadius));
     final shape = Path.combine(PathOperation.difference, bar, notch);
 
-    canvas.drawShadow(shape, AppTheme.aubergine.withValues(alpha: 0.4), 8, false);
+    canvas.drawShadow(shape, AppTheme.aubergine.withValues(alpha: 0.22), 10, false);
     canvas.drawPath(shape, Paint()..color = AppTheme.card);
-    canvas.drawPath(
-      shape,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.6
-        ..strokeJoin = StrokeJoin.round
-        ..color = AppTheme.aubergine,
-    );
   }
 
   @override

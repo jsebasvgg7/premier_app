@@ -8,8 +8,8 @@ import '../../features/profile/presentation/profile_controller.dart';
 import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/standings/presentation/standings_controller.dart';
 import '../../features/standings/presentation/standings_screen.dart';
+import '../theme/app_theme.dart';
 import 'app_header.dart';
-import 'diagonal_backdrop.dart';
 import 'floating_nav_bar.dart';
 
 class MainShell extends StatefulWidget {
@@ -53,7 +53,9 @@ class _MainShellState extends State<MainShell> {
     return Scaffold(
       body: Stack(
         children: [
-          const DiagonalBackdrop(),
+          const Positioned.fill(
+            child: DecoratedBox(decoration: BoxDecoration(gradient: AppTheme.background)),
+          ),
           Column(
             children: [
               Offstage(

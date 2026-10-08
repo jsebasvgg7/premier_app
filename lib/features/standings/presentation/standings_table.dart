@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/crest_image.dart';
+import '../../../core/widgets/notched_card.dart';
 import '../data/models/standing_item.dart';
 
 class StandingsTable extends StatelessWidget {
-  const StandingsTable({super.key, required this.items});
+  const StandingsTable({super.key, required this.items, this.tabLabel});
   final List<StandingItem> items;
+  final String? tabLabel;
 
   static const double _posWidth = 24;
   static const double _statWidth = 24;
@@ -16,20 +18,15 @@ class StandingsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(8, 10, 8, 6),
-      decoration: BoxDecoration(
-        color: AppTheme.card,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppTheme.border, width: 1.4),
-      ),
-      child: Column(
-        children: [
-          _header(),
-          const Divider(height: 10, color: AppTheme.border),
-          for (final s in items) _row(s),
-        ],
-      ),
+    final hasTab = tabLabel != null && tabLabel!.isNotEmpty;
+    return NotchedCard(
+      tabLabel: tabLabel,
+      padding: EdgeInsets.fromLTRB(10, hasTab ? 40 : 16, 10, 10),
+      child: Column(children: [
+        _header(),
+        const SizedBox(height: 6),
+        for (final s in items) _row(s),
+      ]),
     );
   }
 
@@ -65,7 +62,7 @@ class StandingsTable extends StatelessWidget {
           child: Text(
             t,
             textAlign: TextAlign.center,
-            style: style(bold: bold).copyWith(color: color),
+            style: style(bold: bold).copyWith(color: color ?? (leader ? Colors.white : null)),
           ),
         );
     final diff = '${s.goalDifference > 0 ? '+' : ''}${s.goalDifference}';
@@ -74,11 +71,11 @@ class StandingsTable extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 2),
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 7),
       decoration: BoxDecoration(
-        color: leader ? AppTheme.magenta.withValues(alpha: 0.09) : null,
-        borderRadius: BorderRadius.circular(12),
+        gradient: leader ? AppTheme.darkGradient : null,
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Row(children: [
-        cell('${s.position}', _posWidth, bold: leader, color: leader ? AppTheme.magenta : null),
+        cell('${s.position}', _posWidth, bold: leader, color: leader ? AppTheme.neon : null),
         const SizedBox(width: 6),
         Expanded(
           child: Row(children: [
@@ -88,7 +85,7 @@ class StandingsTable extends StatelessWidget {
               child: Text(
                 s.team.displayName,
                 overflow: TextOverflow.ellipsis,
-                style: style(bold: leader),
+                style: style(bold: leader).copyWith(color: leader ? Colors.white : null),
               ),
             ),
           ]),
@@ -99,7 +96,7 @@ class StandingsTable extends StatelessWidget {
         cell('${s.lost}', _statWidth),
         cell('${s.goalsFor}-${s.goalsAgainst}', _goalsWidth),
         cell(diff, _diffWidth),
-        cell('${s.points}', _pointsWidth, bold: true),
+        cell('${s.points}', _pointsWidth, bold: true, color: leader ? AppTheme.neon : null),
       ]),
     );
   }

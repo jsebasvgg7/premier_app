@@ -20,7 +20,7 @@ class AppHeader extends StatelessWidget {
           children: [
             CircleBadge(
               onTap: onProfileTap,
-              child: Icon(Icons.person, size: 28, color: AppTheme.aubergine),
+              child: const Icon(Icons.person, size: 28, color: AppTheme.aubergine),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -37,7 +37,7 @@ class AppHeader extends StatelessWidget {
                 ],
               ),
             ),
-            CircleBadge(
+            const CircleBadge(
               child: PremierLogo(
                 color: AppTheme.aubergine,
                 size: 26,

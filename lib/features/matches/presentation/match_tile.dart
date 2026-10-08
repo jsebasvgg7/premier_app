@@ -11,21 +11,29 @@ class MatchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final center = match.hasScore ? '${match.homeGoals} - ${match.awayGoals}' : clockTime(match.date);
-    const code = TextStyle(fontWeight: FontWeight.w700, fontSize: 17);
+    final center = match.hasScore
+        ? '${match.homeGoals} - ${match.awayGoals}'
+        : clockTime(match.date);
+    const code = TextStyle(fontWeight: FontWeight.w600, fontSize: 17);
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: AppTheme.card,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppTheme.border, width: 1.4),
+        color: Colors.white.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(
+            color: AppTheme.aubergine.withValues(alpha: 0.22), width: 1),
+        boxShadow: AppTheme.softShadow,
       ),
       child: Row(children: [
-        Expanded(child: Text(match.home.tla, style: code)),
+        Expanded(
+            child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(match.home.tla, style: code))),
+        const SizedBox(width: 10),
         CrestImage(match.home.crest, size: 30),
         SizedBox(
-          width: 92,
+          width: 84,
           child: Text(
             center,
             textAlign: TextAlign.center,
@@ -37,7 +45,11 @@ class MatchTile extends StatelessWidget {
           ),
         ),
         CrestImage(match.away.crest, size: 30),
-        Expanded(child: Text(match.away.tla, style: code, textAlign: TextAlign.right)),
+        const SizedBox(width: 10),
+        Expanded(
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(match.away.tla, style: code))),
       ]),
     );
   }

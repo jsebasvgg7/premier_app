@@ -31,7 +31,7 @@ class StandingsScreen extends StatelessWidget {
                 color: AppTheme.aubergine,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: PremierLogo(color: Colors.white, size: 30, fallback: LucideIcons.goal),
+              child: const PremierLogo(color: Colors.white, size: 30, fallback: LucideIcons.goal),
             ),
             const SizedBox(width: 12),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -40,17 +40,13 @@ class StandingsScreen extends StatelessWidget {
             ]),
           ]),
           const SizedBox(height: 20),
-          Row(children: [
-            Icon(LucideIcons.trophy, size: 22, color: AppTheme.plum),
-            const SizedBox(width: 8),
-            const Text('Tabla de Posiciones', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
-          ]),
+          const Text('Tabla de Posiciones', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
           const SizedBox(height: 12),
           switch (c.status) {
             ViewStatus.loading => const Padding(
                 padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator())),
             ViewStatus.error => ErrorView(message: c.errorMessage ?? 'Error', onRetry: c.load),
-            ViewStatus.ready => StandingsTable(items: c.table),
+            ViewStatus.ready => StandingsTable(items: c.table, tabLabel: c.seasonLabel),
           },
         ],
       ),
