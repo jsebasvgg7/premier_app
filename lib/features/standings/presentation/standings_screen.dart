@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
+import 'package:lucide_icons_lite/lucide_icons_lite.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/error_view.dart';
+import '../../../core/widgets/floating_nav_bar.dart';
 import '../../../core/widgets/view_status.dart';
 import 'standings_controller.dart';
 import 'standings_table.dart';
@@ -17,13 +18,13 @@ class StandingsScreen extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: c.load,
       child: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, FloatingNavBar.clearance),
         children: [
           Row(children: [
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(gradient: AppTheme.headerGradient, borderRadius: BorderRadius.circular(14)),
-              child: Icon(PhosphorIconsFill.soccerBall, color: Colors.white),
+              child: Icon(LucideIcons.goal, color: Colors.white),
             ),
             const SizedBox(width: 12),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

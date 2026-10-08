@@ -10,6 +10,7 @@ En esta parte se implementó una aplicación móvil en Flutter que consume el se
 - **http:** realiza las peticiones GET a la API REST.
 - **provider:** gestión de estado mediante controladores `ChangeNotifier`.
 - **flutter_svg:** muestra los escudos de los equipos que la API entrega en formato SVG.
+- **lucide_icons_lite:** iconos de la interfaz (Lucide).
 
 ## 3. Consumo de la API REST
 
@@ -69,7 +70,7 @@ lib/
 │  ├─ models/        (team.dart)
 │  ├─ theme/         (app_theme.dart)
 │  ├─ utils/         (date_format.dart)
-│  └─ widgets/       (main_shell, app_header, crest_image, error_view, view_status)
+│  └─ widgets/       (main_shell, app_header, floating_nav_bar, premier_logo, crest_image, error_view, view_status)
 └─ features/
    ├─ home/
    │  └─ presentation/   (home_screen.dart, widgets/next_match_card.dart)

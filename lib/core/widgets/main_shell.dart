@@ -43,13 +43,22 @@ class _MainShellState extends State<MainShell> {
       const MatchesScreen(),
     ];
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          const AppHeader(),
-          Expanded(child: IndexedStack(index: _index, children: pages)),
+          Column(
+            children: [
+              const AppHeader(),
+              Expanded(child: IndexedStack(index: _index, children: pages)),
+            ],
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: FloatingNavBar(index: _index, onTap: _go),
+          ),
         ],
       ),
-      bottomNavigationBar: FloatingNavBar(index: _index, onTap: _go),
     );
   }
 }

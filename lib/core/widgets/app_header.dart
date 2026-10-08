@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
+import 'package:lucide_icons_lite/lucide_icons_lite.dart';
 
 import '../theme/app_theme.dart';
 import 'gradient_ring.dart';
@@ -19,7 +19,7 @@ class AppHeader extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 14),
           child: Row(
             children: [
-              GradientRing(child: Icon(PhosphorIconsFill.user, size: 24, color: AppTheme.ink)),
+              GradientRing(child: Icon(LucideIcons.user, size: 24, color: AppTheme.ink)),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -37,7 +37,7 @@ class AppHeader extends StatelessWidget {
               ),
               GradientRing(
                 onTap: () {},
-                child: Icon(PhosphorIconsFill.bell, size: 24, color: AppTheme.ink),
+                child: Icon(LucideIcons.bell, size: 24, color: AppTheme.ink),
               ),
             ],
           ),

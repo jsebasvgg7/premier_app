@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/error_view.dart';
+import '../../../core/widgets/floating_nav_bar.dart';
 import '../../../core/widgets/view_status.dart';
 import '../../matches/presentation/match_tile.dart';
 import '../../matches/presentation/matches_controller.dart';
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
     final day = matches.featuredDayMatches;
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, FloatingNavBar.clearance),
       children: [
         if (next != null) NextMatchCard(match: next),
         const SizedBox(height: 20),

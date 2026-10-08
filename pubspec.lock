@@ -131,6 +131,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  lucide_icons_lite:
+    dependency: "direct main"
+    description:
+      name: lucide_icons_lite
+      sha256: "25594092d027785bc280a4a3e92c1a8289d68db934f158de3ca3aca543b535fe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.53.0"
   matcher:
     dependency: transitive
     description:
@@ -187,14 +195,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.2"
-  phosphoricons_flutter:
-    dependency: "direct main"
-    description:
-      name: phosphoricons_flutter
-      sha256: "44e70a09de3027e40484d900089a8ee20ceade0b3cb9d39b9f3be649a9eadb20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   provider:
     dependency: "direct main"
     description:

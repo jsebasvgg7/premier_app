@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
+import 'package:lucide_icons_lite/lucide_icons_lite.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/error_view.dart';
+import '../../../core/widgets/floating_nav_bar.dart';
 import '../../../core/widgets/view_status.dart';
 import 'match_tile.dart';
 import 'matches_controller.dart';
@@ -23,15 +24,15 @@ class MatchesScreen extends StatelessWidget {
     }
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, FloatingNavBar.clearance),
       children: [
         const Text('Calendario', style: TextStyle(fontSize: 20)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(onPressed: () => c.selectMatchday(c.selectedMatchday - 1), icon: Icon(PhosphorIconsBold.caretLeft, size: 20)),
+            IconButton(onPressed: () => c.selectMatchday(c.selectedMatchday - 1), icon: Icon(LucideIcons.chevronLeft, size: 20)),
             Text('Jornada ${c.selectedMatchday}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-            IconButton(onPressed: () => c.selectMatchday(c.selectedMatchday + 1), icon: Icon(PhosphorIconsBold.caretRight, size: 20)),
+            IconButton(onPressed: () => c.selectMatchday(c.selectedMatchday + 1), icon: Icon(LucideIcons.chevronRight, size: 20)),
           ],
         ),
         switch (c.status) {
