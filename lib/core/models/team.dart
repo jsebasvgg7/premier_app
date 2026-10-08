@@ -6,6 +6,17 @@ class Team {
 
   Team({required this.id, required this.shortName, required this.tla, required this.crest});
 
+  static const _displayNames = {
+    'Brighton Hove': 'Brighton',
+    'Nottingham': 'Forest',
+    'Leeds United': 'Leeds',
+    'Leicester City': 'Leicester',
+    'Ipswich Town': 'Ipswich',
+    'Wolverhampton': 'Wolves',
+  };
+
+  String get displayName => _displayNames[shortName] ?? shortName;
+
   factory Team.fromJson(Map<String, dynamic> json) {
     return Team(
       id: json['id'] as int? ?? 0,

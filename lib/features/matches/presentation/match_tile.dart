@@ -11,21 +11,33 @@ class MatchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final center = match.hasScore ? '${match.homeGoals} - ${match.awayGoals}' : hhmm(match.date);
-    const bold = TextStyle(fontWeight: FontWeight.bold, fontSize: 17);
+    final center = match.hasScore ? '${match.homeGoals} - ${match.awayGoals}' : clockTime(match.date);
+    const code = TextStyle(fontWeight: FontWeight.w700, fontSize: 17);
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.violet.withValues(alpha: .6)),
+        color: AppTheme.card,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppTheme.border, width: 1.4),
       ),
       child: Row(children: [
-        Expanded(child: Text(match.home.tla, style: bold, textAlign: TextAlign.left)),
-        CrestImage(match.home.crest, size: 28),
-        SizedBox(width: 80, child: Text(center, textAlign: TextAlign.center)),
-        CrestImage(match.away.crest, size: 28),
-        Expanded(child: Text(match.away.tla, style: bold, textAlign: TextAlign.right)),
+        Expanded(child: Text(match.home.tla, style: code)),
+        CrestImage(match.home.crest, size: 30),
+        SizedBox(
+          width: 92,
+          child: Text(
+            center,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: match.hasScore ? FontWeight.w700 : FontWeight.w500,
+              color: match.hasScore ? AppTheme.magenta : AppTheme.aubergine,
+            ),
+          ),
+        ),
+        CrestImage(match.away.crest, size: 30),
+        Expanded(child: Text(match.away.tla, style: code, textAlign: TextAlign.right)),
       ]),
     );
   }

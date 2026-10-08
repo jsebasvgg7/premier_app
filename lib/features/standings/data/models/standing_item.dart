@@ -8,6 +8,8 @@ class StandingItem {
   final int draw;
   final int lost;
   final int points;
+  final int goalsFor;
+  final int goalsAgainst;
   final int goalDifference;
 
   StandingItem({
@@ -18,6 +20,8 @@ class StandingItem {
     required this.draw,
     required this.lost,
     required this.points,
+    required this.goalsFor,
+    required this.goalsAgainst,
     required this.goalDifference,
   });
 
@@ -30,6 +34,8 @@ class StandingItem {
       draw: json['draw'] as int? ?? 0,
       lost: json['lost'] as int? ?? 0,
       points: json['points'] as int? ?? 0,
+      goalsFor: json['goalsFor'] as int? ?? 0,
+      goalsAgainst: json['goalsAgainst'] as int? ?? 0,
       goalDifference: json['goalDifference'] as int? ?? 0,
     );
   }

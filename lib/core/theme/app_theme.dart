@@ -1,36 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const purple = Color(0xFF38003C);
-  static const violet = Color(0xFF7B2FF7);
-  static const lilac = Color(0xFFEFE6FA);
+  static const aubergine = Color(0xFF2A0A33);
+  static const cream = Color(0xFFF5F0E8);
+  static const card = Colors.white;
+  static const border = Color(0xFFD9CCE3);
+  static const magenta = Color(0xFFE90052);
+  static const plum = Color(0xFF6B3FA0);
 
-  static const ink = Color(0xFF1A0020);
-
-  /// Fondo del topbar: gris muy claro que se funde con el blanco.
-  static const topBarGradient = LinearGradient(
-    colors: [Color(0xFFEFEDF2), Colors.white],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-
-  /// Fondo de la barra inferior flotante.
-  static const navGradient = LinearGradient(
-    colors: [Colors.white, Color(0xFFEDE7F6)],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-
-  static const headerGradient = LinearGradient(
-    colors: [Color(0xFF2A0030), Color(0xFF7B2FF7)],
+  static const matchGradient = LinearGradient(
+    colors: [Color(0xFF3B1049), Color(0xFF14041A)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
-  static ThemeData get light => ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: violet),
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: ThemeData.light().textTheme.apply(bodyColor: purple, displayColor: purple),
-      );
+  static ThemeData get light {
+    final base = ThemeData(useMaterial3: true);
+    final scheme = ColorScheme.fromSeed(seedColor: magenta).copyWith(
+      primary: magenta,
+      onPrimary: Colors.white,
+      surface: cream,
+    );
+    return base.copyWith(
+      colorScheme: scheme,
+      scaffoldBackgroundColor: cream,
+      textTheme: _textTheme(base.textTheme),
+    );
+  }
+
+  static TextTheme _textTheme(TextTheme base) {
+    final t = GoogleFonts.quicksandTextTheme(base)
+        .apply(bodyColor: aubergine, displayColor: aubergine);
+    TextStyle? medium(TextStyle? s) => s?.copyWith(fontWeight: FontWeight.w500);
+    return t.copyWith(
+      bodyLarge: medium(t.bodyLarge),
+      bodyMedium: medium(t.bodyMedium),
+      bodySmall: medium(t.bodySmall),
+      titleMedium: medium(t.titleMedium),
+      titleSmall: medium(t.titleSmall),
+      labelLarge: medium(t.labelLarge),
+    );
+  }
 }

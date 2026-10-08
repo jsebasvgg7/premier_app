@@ -6,6 +6,8 @@ import 'core/theme/app_theme.dart';
 import 'core/widgets/main_shell.dart';
 import 'features/matches/data/matches_repository.dart';
 import 'features/matches/presentation/matches_controller.dart';
+import 'features/profile/data/profile_repository.dart';
+import 'features/profile/presentation/profile_controller.dart';
 import 'features/standings/data/standings_repository.dart';
 import 'features/standings/presentation/standings_controller.dart';
 
@@ -24,6 +26,9 @@ class PremierApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (c) => MatchesController(MatchesRepository(c.read<ApiClient>())),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProfileController(ProfileRepository())..load(),
         ),
       ],
       child: MaterialApp(

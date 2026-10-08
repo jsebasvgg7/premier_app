@@ -11,6 +11,8 @@ En esta parte se implementó una aplicación móvil en Flutter que consume el se
 - **provider:** gestión de estado mediante controladores `ChangeNotifier`.
 - **flutter_svg:** muestra los escudos de los equipos que la API entrega en formato SVG.
 - **lucide_icons_lite:** iconos de la interfaz (Lucide).
+- **google_fonts:** tipografía Quicksand de la interfaz.
+- **shared_preferences:** guarda el perfil del usuario en el dispositivo.
 
 ## 3. Consumo de la API REST
 
@@ -30,17 +32,18 @@ Las respuestas JSON se convierten en objetos Dart mediante constructores de fáb
 Las clases del modelo son:
 
 - **Team** (`core/models`): `id`, `shortName`, `tla` y `crest`. Es compartida por las funcionalidades de tabla y partidos.
-- **StandingItem**: `position`, `team`, `playedGames`, `won`, `draw`, `lost`, `points` y `goalDifference`. Los campos `won`, `draw` y `lost` se agregaron al mapeo inicial porque la interfaz muestra las columnas G, E y P.
+- **StandingItem**: `position`, `team`, `playedGames`, `won`, `draw`, `lost`, `points`, `goalsFor`, `goalsAgainst` y `goalDifference`. Los campos `won`, `draw`, `lost`, `goalsFor` y `goalsAgainst` se agregaron al mapeo inicial porque la interfaz muestra las columnas G, E, P y +/- (goles a favor y en contra).
 - **StandingsResponse**: agrupa la lista de posiciones, la jornada actual y la etiqueta de temporada (por ejemplo, "Temp. 26/27").
 - **MatchModel**: `id`, `matchday`, `date`, `status`, equipo local, equipo visitante y goles. La fecha UTC de la API se convierte a la hora local del dispositivo.
 
 ## 5. Pantallas implementadas
 
-La aplicación tiene tres vistas, comunicadas por una barra de navegación inferior (Inicio, Tabla y Calendario):
+La aplicación tiene cuatro vistas, comunicadas por una barra de navegación inferior (Inicio, Tabla, Calendario y Perfil):
 
 1. **Inicio (resumen):** muestra el saludo al usuario, la tarjeta del próximo partido, los partidos de un solo día y los cinco primeros equipos de la tabla. Cada sección tiene un enlace ("Ver jornada" y "Ver completa") que lleva a su pantalla completa.
-2. **Tabla de posiciones:** presenta los 20 equipos con las columnas #, Equipo, PJ, G, E, P, DG y Pts. Permite actualizar los datos deslizando hacia abajo.
+2. **Tabla de posiciones:** presenta los 20 equipos con las columnas #, Equipo, PJ, G, E, P, +/-, DG y Pts. Permite actualizar los datos deslizando hacia abajo.
 3. **Calendario de partidos:** permite navegar entre jornadas con flechas y muestra los partidos agrupados por día, con la hora o el marcador final.
+4. **Perfil:** formulario donde el usuario escribe su nombre, país, descripción, jugador favorito y equipo favorito. Los datos se guardan en el dispositivo con `shared_preferences` y el nombre se muestra en el saludo del encabezado.
 
 El próximo partido es el primer encuentro sin finalizar de la jornada actual. Los partidos del día destacado son los que se juegan en la misma fecha que ese próximo partido.
 
@@ -70,16 +73,19 @@ lib/
 │  ├─ models/        (team.dart)
 │  ├─ theme/         (app_theme.dart)
 │  ├─ utils/         (date_format.dart)
-│  └─ widgets/       (main_shell, app_header, floating_nav_bar, premier_logo, crest_image, error_view, view_status)
+│  └─ widgets/       (main_shell, app_header, floating_nav_bar, premier_logo, circle_badge, matchday_pill, diagonal_backdrop, crest_image, error_view, view_status)
 └─ features/
    ├─ home/
    │  └─ presentation/   (home_screen.dart, widgets/next_match_card.dart)
    ├─ standings/
    │  ├─ data/           (models/, standings_repository.dart)
    │  └─ presentation/   (standings_controller, standings_screen, standings_table)
-   └─ matches/
-      ├─ data/           (models/match_model.dart, matches_repository.dart)
-      └─ presentation/   (matches_controller, matches_screen, match_tile)
+   ├─ matches/
+   │  ├─ data/           (models/match_model.dart, matches_repository.dart)
+   │  └─ presentation/   (matches_controller, matches_screen, match_tile)
+   └─ profile/
+      ├─ data/           (models/profile_model.dart, profile_repository.dart)
+      └─ presentation/   (profile_controller, profile_screen)
 ```
 
 - **core:** componentes reutilizables por toda la aplicación (cliente HTTP, modelo Team, tema y widgets comunes).
@@ -96,7 +102,7 @@ El flujo de datos es: pantalla → controlador → repositorio → ApiClient →
 
 ## 9. Resultados
 
-La aplicación se ejecutó correctamente. Muestra el próximo partido, el calendario del día y la tabla de posiciones con datos reales del servicio. Se verificó la navegación entre las tres vistas.
+La aplicación se ejecutó correctamente. Muestra el próximo partido, el calendario del día y la tabla de posiciones con datos reales del servicio. Se verificó la navegación entre las cuatro vistas.
 
 ## 10. Conclusiones
 
