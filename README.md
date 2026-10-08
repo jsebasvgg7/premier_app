@@ -103,8 +103,3 @@ La aplicación se ejecutó correctamente. Muestra el próximo partido, el calend
 - El mapeo a clases Dart con valores por defecto evita errores cuando la API omite campos.
 - La caché por jornada permite trabajar dentro del límite de 10 peticiones por minuto del plan gratuito.
 - Manejar los códigos de error de forma centralizada da mensajes claros al usuario y evita que la aplicación se detenga ante fallos de red o de la API.
-
-## 11. Entrega
-
-- Repositorio en GitHub: (agregar enlace)
-- Video de sustentación en YouTube: (agregar enlace)
