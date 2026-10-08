@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme/app_theme.dart';
-import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/view_status.dart';
 import 'standings_controller.dart';
@@ -19,13 +19,11 @@ class StandingsScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const AppHeader(),
-          const SizedBox(height: 16),
           Row(children: [
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(gradient: AppTheme.headerGradient, borderRadius: BorderRadius.circular(14)),
-              child: const Icon(Icons.sports_soccer, color: Colors.white),
+              child: Icon(PhosphorIconsFill.soccerBall, color: Colors.white),
             ),
             const SizedBox(width: 12),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

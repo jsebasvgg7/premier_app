@@ -6,6 +6,8 @@ import '../../features/matches/presentation/matches_controller.dart';
 import '../../features/matches/presentation/matches_screen.dart';
 import '../../features/standings/presentation/standings_controller.dart';
 import '../../features/standings/presentation/standings_screen.dart';
+import 'app_header.dart';
+import 'floating_nav_bar.dart';
 
 /// Contenedor con la barra de navegación inferior (Home / Tabla / Calendario).
 class MainShell extends StatefulWidget {
@@ -41,16 +43,13 @@ class _MainShellState extends State<MainShell> {
       const MatchesScreen(),
     ];
     return Scaffold(
-      body: SafeArea(child: IndexedStack(index: _index, children: pages)),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: _go,
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Inicio'),
-          NavigationDestination(icon: Icon(Icons.table_rows_outlined), selectedIcon: Icon(Icons.table_rows), label: 'Tabla'),
-          NavigationDestination(icon: Icon(Icons.calendar_month_outlined), selectedIcon: Icon(Icons.calendar_month), label: 'Calendario'),
+      body: Column(
+        children: [
+          const AppHeader(),
+          Expanded(child: IndexedStack(index: _index, children: pages)),
         ],
       ),
+      bottomNavigationBar: FloatingNavBar(index: _index, onTap: _go),
     );
   }
 }

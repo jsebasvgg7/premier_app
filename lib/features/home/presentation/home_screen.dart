@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/utils/date_format.dart';
-import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/view_status.dart';
 import '../../matches/presentation/match_tile.dart';
@@ -27,8 +26,6 @@ class HomeScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        const AppHeader(),
-        const SizedBox(height: 16),
         if (next != null) NextMatchCard(match: next),
         const SizedBox(height: 20),
         _sectionTitle('Calendario', 'Ver jornada', onSeeMatches,

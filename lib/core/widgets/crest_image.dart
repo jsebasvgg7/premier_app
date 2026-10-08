@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 
 /// Algunos escudos de la API son .svg y otros .png.
 class CrestImage extends StatelessWidget {
@@ -9,7 +10,7 @@ class CrestImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fallback = Icon(Icons.shield_outlined, size: size);
+    final fallback = Icon(PhosphorIconsRegular.shield, size: size);
     if (url.isEmpty) return fallback;
     final image = url.toLowerCase().endsWith('.svg')
         ? SvgPicture.network(url, width: size, height: size)
